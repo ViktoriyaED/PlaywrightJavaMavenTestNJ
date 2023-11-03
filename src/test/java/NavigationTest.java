@@ -34,12 +34,11 @@ public class NavigationTest extends BaseTest {
 
     @Test(dependsOnMethods = "testHomePage", dataProvider = "TopNavigationBar")
     public void testSubMenu_NavigatesTo_SubMenuPage(String submenu, String expectedUrl, String expectedTitle) {
-
         String homePageUrl = page.url();
         String homePageTitle = page.title();
 
+        page.navigate("https://magento.softwaretestingboard.com/");
         page.getByRole((AriaRole.MENUITEM), new Page.GetByRoleOptions().setName(Pattern.compile(submenu))).click();
-//        page.getByRole((AriaRole.MENUITEM), new Page.GetByRoleOptions().setName(Pattern.compile(submenu, Pattern.DOTALL))).click();
 
         String whatsNewUrl = page.url();
         String whatsNewTitle = page.title();
@@ -49,5 +48,10 @@ public class NavigationTest extends BaseTest {
 
         Assert.assertEquals(page.url(), expectedUrl);
         Assert.assertEquals(page.title(), expectedTitle);
+    }
+
+    @Test
+    public void test_tc05() {
+
     }
 }
